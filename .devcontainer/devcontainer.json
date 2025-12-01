@@ -1,11 +1,10 @@
 {
   "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
       "extensions": [
         "github.copilot",
-        "github.vscode-github-actions",
-        "me-dutour-mathieu.vscode-github-actions",
         "redhat.vscode-yaml",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint"
