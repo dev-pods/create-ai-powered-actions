@@ -10,6 +10,9 @@ The built in `{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}` token used in Gi
 
 To enable your workflow to use these models, you need to explicitly grant the `models: read` permission in your workflow file.
 
+> [!NOTE]
+> For a complete list of available `GITHUB_TOKEN` permissions and guidance on configuring them, see the [workflow permissions reference](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions).
+
 ### ⌨️ Activity: Author Workflow
 
 Let's see your Rate Jokes action in action by creating a workflow that uses it!
@@ -19,6 +22,8 @@ Let's see your Rate Jokes action in action by creating a workflow that uses it!
    ```txt
    .github/workflows/rate-joke.yml
    ```
+
+   > 🪧 Note: For learning purposes, we create the workflow in the same repository as your action. However, you would typically consume your published action from another project/repository.
 
 1. Let's define the workflow to trigger on new issue comments and set the required permissions:
 
