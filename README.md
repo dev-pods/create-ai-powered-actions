@@ -25,7 +25,7 @@ Neste exercício, você irá:
 
 Simplesmente copie o exercício para sua conta, então dê ao seu Octocat favorito (Mona) **cerca de 20 segundos** para preparar a primeira lição, depois **atualize a página**.
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=create-ai-powered-actions&owner=%40me&name=skills-create-ai-powered-actions&description=Exercise:+Create+AI+Powered+Actions&visibility=public)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=dev-pods&template_name=create-ai-powered-actions&owner=%40me&name=create-ai-powered-actions&description=Create+AI+Powered+Actions&visibility=public)
 
 <details>
 <summary>Tendo problemas? 🤷</summary><br/>
