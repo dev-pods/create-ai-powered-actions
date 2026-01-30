@@ -1,27 +1,27 @@
-## Step 1: Setup the action to rate your jokes!
+## Passo 1: Configure a ação para avaliar suas piadas!
 
-You’re convinced every joke you tell is a comedic masterpiece 😂 Today an emotionless robot will weigh in 🤖.
+Você está convencido de que cada piada que você conta é uma obra-prima da comédia 😂 Hoje um robô sem emoções dará sua opinião 🤖.
 
-In this exercise you’ll build a GitHub Action that lets AI score just how funny your jokes really are!
+Neste exercício você construirá uma GitHub Action que permite que a IA avalie o quão engraçadas suas piadas realmente são!
 
-<img width="600" alt="two octocat share a science pun" src="https://github.com/user-attachments/assets/6ea16f47-5cf8-4448-9e4d-04283072822c" />
+<img width="600" alt="dois octocats compartilham um trocadilho científico" src="https://github.com/user-attachments/assets/6ea16f47-5cf8-4448-9e4d-04283072822c" />
 
-### ⌨️ Activity: Set up your development environment
+### ⌨️ Atividade: Configure seu ambiente de desenvolvimento
 
-Let's use **GitHub Codespaces** to set up a cloud-based development environment and work in it for the remainder of the exercise!
+Vamos usar o **GitHub Codespaces** para configurar um ambiente de desenvolvimento baseado em nuvem e trabalhar nele durante o restante do exercício!
 
-1. Right-click the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
+1. Clique com o botão direito no botão abaixo para abrir a página **Create Codespace** em uma nova aba. Use a configuração padrão.
 
    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
 
-1. Confirm the **Repository** field is your copy of the exercise, not the original, then click the green **Create Codespace** button.
+1. Confirme que o campo **Repository** é sua cópia do exercício, não o original, então clique no botão verde **Create Codespace**.
 
-   - ✅ Your copy: `/{{full_repo_name}}`
-   - ❌ Original: `/skills/create-ai-powered-actions`
+   - ✅ Sua cópia: `/{{full_repo_name}}`
+   - ❌ Original: `/dev-pods/create-ai-powered-actions`
 
-1. Wait a moment for Visual Studio Code to load in your browser.
+1. Aguarde um momento para o Visual Studio Code carregar no seu navegador.
 
-1. Verify that **Node.js** is available by opening a terminal and running:
+1. Verifique se o **Node.js** está disponível abrindo um terminal e executando:
 
    ```sh
    node --version
@@ -29,56 +29,56 @@ Let's use **GitHub Codespaces** to set up a cloud-based development environment 
    ```
 
    <details>
-   <summary>Having trouble? 🤷</summary><br/>
+   <summary>Tendo problemas? 🤷</summary><br/>
 
-   - Make sure you selected your personal copy of the repository, not the original template.
-   - If the Codespace fails to start, try refreshing the page and creating a new one.
-   - Node.js and npm should be pre-installed in the development environment.
+   - Certifique-se de que você selecionou sua cópia pessoal do repositório, não o template original.
+   - Se o Codespace falhar ao iniciar, tente atualizar a página e criar um novo.
+   - Node.js e npm devem estar pré-instalados no ambiente de desenvolvimento.
 
    </details>
 
-### ⌨️ Activity: Install OpenAI SDK
+### ⌨️ Atividade: Instalar OpenAI SDK
 
-Now that your Codespace is ready, let's install the OpenAI SDK, which you'll use to interact with GitHub Models.
+Agora que seu Codespace está pronto, vamos instalar o OpenAI SDK, que você usará para interagir com o GitHub Models.
 
-1. Open the terminal in your Codespace.
-1. Run the following command to install the OpenAI SDK:
+1. Abra o terminal no seu Codespace.
+1. Execute o seguinte comando para instalar o OpenAI SDK:
 
    ```sh
    npm install openai
    ```
 
-1. Verify the installation by checking the `package.json` file for the `openai` dependency.
+1. Verifique a instalação conferindo o arquivo `package.json` para a dependência `openai`.
 
-### ⌨️ Activity: Create Metadata File
+### ⌨️ Atividade: Criar arquivo de metadados
 
-The action we will create today will accept a joke as input and return an AI-generated evaluation of that joke.
+A ação que criaremos hoje aceitará uma piada como entrada e retornará uma avaliação gerada por IA dessa piada.
 
-1. Create `action.yml` file at the repository root and define the action metadata as shown below.
+1. Crie o arquivo `action.yml` na raiz do repositório e defina os metadados da ação conforme mostrado abaixo.
 
 
    ```yml
    name: "Rate Joke Action"
-   description: "Rates a joke using GitHub Models"
+   description: "Avalia uma piada usando GitHub Models"
 
    inputs:
      joke:
-       description: "The joke to be rated"
+       description: "A piada a ser avaliada"
        required: true
      token:
-       description: "Personal access token to be used for GitHub Models API call"
+       description: "Token de acesso pessoal a ser usado para chamada da API do GitHub Models"
        default: {% raw %}${{ github.token }}{% endraw %}
 
    outputs:
      result:
-       description: "AI-generated joke evaluation"
+       description: "Avaliação da piada gerada por IA"
 
    runs:
      using: node24
      main: dist/index.js
    ```
 
-   > ❕ **Important:** If you are not familiar with what this file is, pause and  complete the **[write-javascript-actions](https://github.com/skills/write-javascript-actions) exercise first**.
+   > ❕ **Importante:** Se você não está familiarizado com o que este arquivo é, pause e complete primeiro o **exercício [write-javascript-actions](https://github.com/dev-pods/write-javascript-actions)**.
 
-1. Commit and push the changes to the `main` branch.
-1. With the changes pushed to GitHub, Mona will check your work and share the next steps.
+1. Faça commit e push das alterações para o branch `main`.
+1. Com as alterações enviadas para o GitHub, Mona verificará seu trabalho e compartilhará os próximos passos.

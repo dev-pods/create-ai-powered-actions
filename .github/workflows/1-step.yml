@@ -21,11 +21,11 @@ jobs:
   find_exercise:
     if: github.run_number != 1
 
-    name: Find Exercise Issue
+    name: Encontrar Issue do Exercício
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
 
   check_step_work:
-    name: Check step work
+    name: Verificar trabalho do passo
     runs-on: ubuntu-latest
     needs: [find_exercise]
     env:
@@ -36,14 +36,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Get response templates
+      - name: Obter templates de resposta
         uses: actions/checkout@v6
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
           ref: v0.7.0
 
-      - name: Find last comment
+      - name: Encontrar último comentário
         id: find-last-comment
         uses: peter-evans/find-comment@v3
         with:
@@ -51,7 +51,7 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           direction: last
 
-      - name: Update comment - checking work
+      - name: Atualizar comentário - verificando trabalho
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
@@ -62,7 +62,7 @@ jobs:
 
       # START: Check practical exercise
 
-      - name: Check if openai dependency exists in package.json
+      - name: Verificar se dependência openai existe no package.json
         id: check-openai-dependency
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v1
@@ -70,7 +70,7 @@ jobs:
           text-file: package.json
           keyphrase: openai
 
-      - name: Check if action.yml contains required inputs
+      - name: Verificar se action.yml contém inputs necessários
         id: check-action-inputs
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v1
@@ -78,7 +78,7 @@ jobs:
           text-file: action.yml
           keyphrase: inputs
 
-      - name: Update comment - step results
+      - name: Atualizar comentário - resultados do passo
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
@@ -89,19 +89,19 @@ jobs:
           vars: |
             step_number: 1
             results_table:
-              - description: "Checked if openai dependency exists in package.json"
+              - description: "Verificado se dependência openai existe no package.json"
                 passed: ${{ steps.check-openai-dependency.outcome == 'success' }}
-              - description: "Checked if action.yml contains required inputs"
+              - description: "Verificado se action.yml contém inputs necessários"
                 passed: ${{ steps.check-action-inputs.outcome == 'success' }}
 
       # END: Check practical exercise
 
-      - name: Fail job if not all checks passed
+      - name: Falhar job se nem todas as verificações passaram
         if: contains(steps.*.outcome, 'failure')
         run: exit 1
 
   post_next_step_content:
-    name: Post next step content
+    name: Postar conteúdo do próximo passo
     needs: [find_exercise, check_step_work]
     runs-on: ubuntu-latest
     env:
@@ -112,14 +112,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Get response templates
+      - name: Obter templates de resposta
         uses: actions/checkout@v6
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
           ref: v0.7.0
 
-      - name: Create comment - step finished
+      - name: Criar comentário - passo finalizado
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
@@ -128,21 +128,21 @@ jobs:
           vars: |
             next_step_number: 2
 
-      - name: Create comment - add step content
+      - name: Criar comentário - adicionar conteúdo do passo
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_2_FILE }}
 
-      - name: Create comment - watching for progress
+      - name: Criar comentário - observando progresso
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
 
-      - name: Disable current workflow and enable next one
+      - name: Desabilitar fluxo de trabalho atual e habilitar próximo
         run: |
           gh workflow disable "${{github.workflow}}"
           gh workflow enable "Step 2"

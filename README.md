@@ -1,46 +1,46 @@
 # Create AI Powered Actions
 
-_Build intelligent Javascript based GitHub Actions that leverage GitHub Models._
+_Construa GitHub Actions inteligentes baseadas em Javascript que aproveitam o poder do GitHub Models._
 
-## Welcome
+## Bem-vindo
 
-- **Who is this for**: Developers who want to build custom AI-enhanced GitHub Actions
-- **What you'll learn**: How to leverage GitHub Models in your Javascript actions, implement structured AI outputs with Zod schemas and create responsive workflows.
-- **What you'll build**: A complete AI-powered Javascript based GitHub Action that analyzes and rates jokes
-- **Prerequisites**:
+- **Para quem é este exercício**: Desenvolvedores que desejam construir GitHub Actions personalizadas com melhorias de IA
+- **O que você aprenderá**: Como aproveitar o GitHub Models em suas ações Javascript, implementar saídas estruturadas de IA com schemas Zod e criar fluxos de trabalho responsivos.
+- **O que você construirá**: Uma GitHub Action completa, baseada em Javascript e alimentada por IA, que analisa e avalia piadas
+- **Pré-requisitos**:
 
-  - We strongly recommend completing the **[write-javascript-actions](https://github.com/skills/write-javascript-actions)** exercise first, as it covers the foundational skills needed for creating JavaScript-based GitHub Actions
+  - Recomendamos fortemente completar o exercício **[write-javascript-actions](https://github.com/dev-pods/write-javascript-actions)** primeiro, pois ele cobre as habilidades fundamentais necessárias para criar GitHub Actions baseadas em JavaScript
 
-- **How long**: This exercise takes less than 1 hour to complete.
+- **Quanto tempo leva**: Este exercício leva menos de 1 hora para completar.
 
-In this exercise, you will:
+Neste exercício, você irá:
 
-1. Set up a development environment and install the OpenAI SDK for GitHub Models integration
-1. Create action metadata and implement AI-powered joke rating logic using GitHub Models
-1. Test your action locally with debugging tools and package it for distribution
-1. Author a GitHub Actions workflow that triggers on issue comments and updates them with AI analysis
-1. Implement structured outputs using Zod schemas for reliable data processing and conditional workflow logic
+1. Configurar um ambiente de desenvolvimento e instalar o OpenAI SDK para integração com GitHub Models
+1. Criar metadados de ação e implementar lógica de avaliação de piadas alimentada por IA usando GitHub Models
+1. Testar sua ação localmente com ferramentas de depuração e empacotá-la para distribuição
+1. Criar um fluxo de trabalho do GitHub Actions que é acionado por comentários em issues e os atualiza com análise de IA
+1. Implementar saídas estruturadas usando schemas Zod para processamento confiável de dados e lógica condicional de fluxo de trabalho
 
-### How to start this exercise
+### Como iniciar este exercício
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+Simplesmente copie o exercício para sua conta, então dê ao seu Octocat favorito (Mona) **cerca de 20 segundos** para preparar a primeira lição, depois **atualize a página**.
 
 [![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=create-ai-powered-actions&owner=%40me&name=skills-create-ai-powered-actions&description=Exercise:+Create+AI+Powered+Actions&visibility=public)
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-When copying the exercise, we recommend the following settings:
+Ao copiar o exercício, recomendamos as seguintes configurações:
 
-- For owner, choose your personal account or an organization to host the repository.
+- Para owner, escolha sua conta pessoal ou uma organização para hospedar o repositório.
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
+- Recomendamos criar um repositório público, já que repositórios privados usarão minutos de Actions.
 
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
+Se o exercício não estiver pronto em 20 segundos, por favor verifique a aba [Actions](../../actions).
 
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
+- Verifique se um job está executando. Às vezes simplesmente leva um pouco mais de tempo.
 
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+- Se a página mostrar um job com falha, por favor submeta uma issue. Legal, você encontrou um bug! 🐛
 
 </details>
 

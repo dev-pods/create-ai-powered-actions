@@ -1,35 +1,35 @@
-## Step 3: Create Workflow to test your Action
+## Passo 3: Criar fluxo de trabalho para testar sua ação
 
-Pause for a moment! We need a way to test your actions in a real GitHub environment.
+Pause por um momento! Precisamos de uma forma de testar suas ações em um ambiente real do GitHub.
 
-Let's create a workflow that will trigger your action whenever a new comment is added to an issue. Your action will analyze the joke in the comment and we will use that result to update the comment with the AI-generated rating.
+Vamos criar um fluxo de trabalho que acionará sua ação sempre que um novo comentário for adicionado a uma issue. Sua ação analisará a piada no comentário e usaremos esse resultado para atualizar o comentário com a avaliação gerada por IA.
 
-### 📖 Theory: Granting access to GitHub Models
+### 📖 Teoria: Concedendo acesso ao GitHub Models
 
-The built in `{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}` token used in GitHub Actions workflows does not have access to GitHub's AI models by default.
+O token interno `{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}` usado em fluxos de trabalho do GitHub Actions não tem acesso aos modelos de IA do GitHub por padrão.
 
-To enable your workflow to use these models, you need to explicitly grant the `models: read` permission in your workflow file.
+Para habilitar seu fluxo de trabalho a usar esses modelos, você precisa conceder explicitamente a permissão `models: read` no seu arquivo de fluxo de trabalho.
 
 > [!NOTE]
-> For a complete list of available `GITHUB_TOKEN` permissions and guidance on configuring them, see the [workflow permissions reference](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions).
+> Para uma lista completa das permissões disponíveis do `GITHUB_TOKEN` e orientação sobre como configurá-las, veja a [referência de permissões de fluxo de trabalho](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions).
 
-### ⌨️ Activity: Author Workflow
+### ⌨️ Atividade: Criar o fluxo de trabalho
 
-Let's see your Rate Jokes action in action by creating a workflow that uses it!
+Vamos ver sua ação Rate Jokes em ação criando um fluxo de trabalho que a usa!
 
-1. Create a new GitHub Actions workflow file with the following name
+1. Crie um novo arquivo de fluxo de trabalho do GitHub Actions com o seguinte nome
 
    ```txt
    .github/workflows/rate-joke.yml
    ```
 
-   > 🪧 Note: For learning purposes, we create the workflow in the same repository as your action. However, you would typically consume your published action from another project/repository.
+   > 🪧 Nota: Para fins de aprendizado, criamos o fluxo de trabalho no mesmo repositório que sua ação. No entanto, você normalmente consumiria sua ação publicada de outro projeto/repositório.
 
-1. Let's define the workflow to trigger on new issue comments and set the required permissions:
+1. Vamos definir o fluxo de trabalho para acionar em novos comentários de issue e definir as permissões necessárias:
 
    ```yaml
    name: Rate Joke
-   run-name: {% raw %}Rate Joke by ${{ github.event.comment.user.login }}{% endraw %}
+   run-name: {% raw %}Avaliar Piada por ${{ github.event.comment.user.login }}{% endraw %}
 
    on:
      issue_comment:
@@ -43,45 +43,45 @@ Let's see your Rate Jokes action in action by creating a workflow that uses it!
 
    ```
 
-1. Now let's add a job to run your action and update the comment with the AI joke analysis.
+1. Agora vamos adicionar um job para executar sua ação e atualizar o comentário com a análise de piada da IA.
 
-   Add the following step to your workflow:
+   Adicione o seguinte passo ao seu fluxo de trabalho:
 
     ```yaml
 
     jobs:
       joke:
-        name: Rate Joke
+        name: Avaliar Piada
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v6
-          - name: Rate Joke
+          - name: Avaliar Piada
             id: rate-joke
             uses: ./
             with:
               joke: {% raw %}${{ github.event.comment.body }}{% endraw %}
               token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-          - name: Update comment
+          - name: Atualizar comentário
             uses: peter-evans/create-or-update-comment@v5
             with:
               comment-id: {% raw %}${{ github.event.comment.id }}{% endraw %}
               reactions: laugh
               edit-mode: replace
               body: |
-                ## 🤖 AI Joke Rating Results
+                ## 🤖 Resultados da Avaliação de Piada por IA
 
-                **Your joke:**
+                **Sua piada:**
                 > {% raw %}${{ github.event.comment.body }}{% endraw %}
 
-                **AI Analysis:**
+                **Análise da IA:**
                 {% raw %}${{ steps.rate-joke.outputs.result }}{% endraw %}
     ```
 
-    First, we call your action with the comment body as input; then we update the original issue comment in place using `peter-evans/create-or-update-comment`, inserting the AI rating generated by your action.
+    Primeiro, chamamos sua ação com o corpo do comentário como entrada; então atualizamos o comentário original da issue no lugar usando `peter-evans/create-or-update-comment`, inserindo a avaliação de IA gerada pela sua ação.
 
-    > ❗️ **Important:** Ensure the indentation is correct in your YAML file.
+    > ❗️ **Importante:** Certifique-se de que a indentação está correta no seu arquivo YAML.
 
-1. Commit and push the workflow file to the `main` branch:
+1. Faça commit e push do arquivo de fluxo de trabalho para o branch `main`:
 
    ```sh
    git add .github/workflows/rate-joke.yml
@@ -89,41 +89,41 @@ Let's see your Rate Jokes action in action by creating a workflow that uses it!
    git push
    ```
 
-### ⌨️ Activity: Test Workflow with Real Comments
+### ⌨️ Atividade: Testar o fluxo de trabalho com comentários reais
 
-Let's try testing the workflow by commenting right here, on the issue!
+Vamos tentar testar o fluxo de trabalho comentando aqui mesmo, na issue!
 
-1. Post a comment containing a joke to trigger the workflow.
+1. Poste um comentário contendo uma piada para acionar o fluxo de trabalho.
 
-   Example:
-
-   ```md
-   Why did the scarecrow win an award? Because he was outstanding in his field!
-   ```
-
-   After a moment, you should see the comment you added get updated.
-
-   You can also monitor the Actions tab of your repository to see the workflow run and check for any errors.
-
-1. (optional) Post a comment without a joke to test how your action will handle non-joke comments.
-
-   Example:
+   Exemplo:
 
    ```md
-   I love learning about GitHub Actions!
+   Por que o livro de matemática estava triste? Porque tinha muitos problemas!
    ```
 
-1. With the comment added, Mona should share the next steps!
+   Após um momento, você deverá ver o comentário que adicionou ser atualizado.
+
+   Você também pode monitorar a aba Actions do seu repositório para ver a execução do fluxo de trabalho e verificar se há erros.
+
+1. (opcional) Poste um comentário sem uma piada para testar como sua ação lidará com comentários que não são piadas.
+
+   Exemplo:
+
+   ```md
+   Eu amo aprender sobre GitHub Actions!
+   ```
+
+1. Com o comentário adicionado, Mona deve compartilhar os próximos passos!
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-If the workflow doesn't trigger or complete successfully, please check the following:
+Se o fluxo de trabalho não acionar ou completar com sucesso, por favor verifique o seguinte:
 
-- See for any errors in the Actions tab of your repository.
-- Ensure that you have ran `npm run build` on the latest code changes.
-- Make sure the workflow file is correctly formatted
-- If you are encountering rate limiting issues, please wait a few minutes and try again.
-  - If you have hit daily limits, you may have to come back to this exercise tomorrow.
+- Veja se há erros na aba Actions do seu repositório.
+- Certifique-se de que você executou `npm run build` nas últimas alterações de código.
+- Certifique-se de que o arquivo de fluxo de trabalho está formatado corretamente
+- Se você estiver encontrando problemas de limitação de taxa, por favor aguarde alguns minutos e tente novamente.
+  - Se você atingiu os limites diários, pode ter que voltar a este exercício amanhã.
 
 </details>

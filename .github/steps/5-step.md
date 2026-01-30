@@ -1,71 +1,71 @@
-## Step 5: Trigger & Validate
+## Passo 5: Acionar e validar
 
-Awesome! :rocket: You've created the Rate Jokes GitHub Action, leveraged structured outputs and authored a workflow to use it.
+Incrível! :rocket: Você criou a GitHub Action Rate Jokes, aproveitou saídas estruturadas e criou um fluxo de trabalho para usá-la.
 
-The only thing left to do is test it out!
+A única coisa que resta fazer é testá-la!
 
-### ⌨️ Activity: Try out your action
+### ⌨️ Atividade: Experimente sua ação
 
-If everything works correctly, your workflow should update the joke comments and leave the generic comments unchanged.
+Se tudo funcionar corretamente, seu fluxo de trabalho deve atualizar os comentários de piadas e deixar os comentários genéricos inalterados.
 
-Let's try that out!
+Vamos experimentar isso!
 
-1. Right here in this issue, comment with a joke you would like the AI to rate. Here are some examples
+1. Aqui mesmo nesta issue, comente com uma piada que você gostaria que a IA avaliasse. Aqui estão alguns exemplos
 
     ```md
-    How many tickles does it take to tickle an octopus? Ten-tickles!
+    Por que o livro de matemática estava triste? Porque tinha muitos problemas!
     ```
 
     ```md
-    Want to hear my pizza joke? Never mind, it's too cheesy.
+    Qual é o doce preferido do átomo? Pé-de-molécula!
     ```
 
     ```md
-    Why don't sharks eat clowns? Because they taste funny.
+    Por que o programador foi preso? Porque ele tinha muitos bugs no código!
     ```
 
-    > 🪧 **Note:** You can find more jokes on the [icanhazdadjoke](https://icanhazdadjoke.com/) website.
+    > 🪧 **Nota:** Você pode encontrar mais piadas (em inglês) no site [icanhazdadjoke](https://icanhazdadjoke.com/).
 
-1. Let's try commenting with a non-joke comment and monitor the Actions tab if they are correctly classified. Here are some examples.
-
-    ```md
-    I love learning about GitHub Actions!
-    ```
+1. Vamos tentar comentar com um comentário que não seja piada e monitorar a aba Actions para ver se são classificados corretamente. Aqui estão alguns exemplos.
 
     ```md
-    What's the weather like today?
+    Eu amo aprender sobre GitHub Actions!
     ```
 
     ```md
-    Can someone help me with my code?
+    Como está o clima hoje?
     ```
 
-    For all of the non-joke comments, the workflow should leave them unchanged.
+    ```md
+    Alguém pode me ajudar com meu código?
+    ```
 
-    In the workflow logs you should see the `Update comment` step being skipped.
+    Para todos os comentários que não são piadas, o fluxo de trabalho deve deixá-los inalterados.
+
+    Nos logs do fluxo de trabalho você deve ver o passo `Update comment` sendo pulado.
 
    
     <details>
-    <summary>📸 Show screenshot</summary><br/>
+    <summary>📸 Mostrar screenshot</summary><br/>
 
-    <img width="350" alt="ports tab" src="https://github.com/user-attachments/assets/e7db9def-d6ac-4a4c-800a-43ee82be0b22" />
+    <img width="350" alt="aba de portas" src="https://github.com/user-attachments/assets/e7db9def-d6ac-4a4c-800a-43ee82be0b22" />
 
     </details>
 
-1. Mona will post the exercise review once your new Rate Joke workflow completes **successfully**!
+1. Mona postará a revisão do exercício assim que seu novo fluxo de trabalho Rate Joke for completado **com sucesso**!
 
    <details>
-   <summary>Having trouble? 🤷</summary><br/>
+   <summary>Tendo problemas? 🤷</summary><br/>
 
-   If the workflow doesn't trigger or fails:
-   - Check the Actions tab for error messages
-   - Verify that your `dist/index.js` file exists and was committed
-   - If you did any updates to your source code, ensure you re-bundled with `npm run build` and pushed the changes
-   - Ensure your workflow file is correctly formatted
+   Se o fluxo de trabalho não acionar ou falhar:
+   - Verifique a aba Actions para mensagens de erro
+   - Verifique se seu arquivo `dist/index.js` existe e foi commitado
+   - Se você fez alguma atualização no seu código fonte, certifique-se de ter re-empacotado com `npm run build` e enviado as alterações
+   - Certifique-se de que seu arquivo de fluxo de trabalho está formatado corretamente
 
-    If you are not receiving reviews from Mona:
-    - Ensure your workflow is named `Rate Joke` and completes successfully
+    Se você não está recebendo revisões da Mona:
+    - Certifique-se de que seu fluxo de trabalho é nomeado `Rate Joke` e completa com sucesso
    </details>
 
 > [!NOTE]
-> Even after the exercise is finished, you can continue commenting with jokes or non-jokes!
+> Mesmo depois que o exercício terminar, você pode continuar comentando com piadas ou não-piadas!
